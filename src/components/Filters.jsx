@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function Filters ({ onChange }) {
+export function Filters ({ onChange, maxPrice, categories }) {
   const [minPrice, setMinPrice] = useState(0)
   const handleChangeMinPrice = (e) => {
     setMinPrice(e.target.value)
@@ -21,7 +21,7 @@ export function Filters ({ onChange }) {
         <div className='col-sm-5 col-md-4 mb-2 mb-sm-0 card'>
           <label htmlFor='price' className='form-label fw-light'>Desde: $ {minPrice}</label>
           <input
-            type='range' className='form-range' id='price' min='0' max='5000'
+            type='range' className='form-range' id='price' min='0' max={maxPrice - 100} step='200'
             onChange={handleChangeMinPrice}
           />
         </div>
@@ -32,9 +32,9 @@ export function Filters ({ onChange }) {
             className='form-select form-select-sm mb-1' aria-label='Small select example'
           >
             <option value='all'>Todas</option>
-            <option value='laptops'>Notebooks</option>
-            <option value='smartphones'>Celulares</option>
-            <option value='fragrances'>Perfumes</option>
+            {categories.map(category => (
+              <option key={category} value={category}>{category}</option>
+            ))}
           </select>
         </div>
       </div>

@@ -5,26 +5,29 @@ import { Header } from './components/Header.jsx'
 
 function App () {
   const [products] = useState(initialProducts)
+  const maxPrice = Math.max(...initialProducts.map(product => product.price))
+  const categories = [...new Set(products.map(product => product.category))]
   const [filters, setFilters] = useState({
     category: 'all',
-    minPrice: 800
+    minPrice: 0,
+    maxPrice,
+    categories
   })
-
   const filterProducts = (products) => {
-    return products.filter((product) => {
-      return product.price >= filters.minPrice &&
+    return products.filter(product => {
+      return (product.price >= filters.minPrice &&
                 (
                   filters.category === 'all' ||
                     product.category === filters.category
                 )
+      )
     })
   }
-
   const filteredProducts = filterProducts(products)
 
   return (
     <>
-      <Header changeFilters={setFilters} />
+      <Header changeFilters={setFilters} maxPrice={maxPrice} categories={categories} />
       <Products products={filteredProducts} />
     </>
   )
