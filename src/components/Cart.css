@@ -1,6 +1,7 @@
 .cart-button {
     align-items     : center;
-    background      : #0D6EFD;
+    background      : #212529;
+    /* background      : #0D6EFD; */
     border-radius   : 9999px;
     cursor          : pointer;
     display         : flex;
