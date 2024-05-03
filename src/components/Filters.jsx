@@ -1,16 +1,18 @@
-import { useState } from 'react'
+import { useId } from 'react'
+import { useFilters } from '../hooks/useFilters.js'
 
-export function Filters ({ onChange, maxPrice, categories }) {
-  const [minPrice, setMinPrice] = useState(0)
+export function Filters ({ maxPrice, categories }) {
+  const { filters, setFilters } = useFilters()
+  const minPriceFilterId = useId()
+  const categoryFilterId = useId()
   const handleChangeMinPrice = (e) => {
-    setMinPrice(e.target.value)
-    onChange(prevState => ({
+    setFilters(prevState => ({
       ...prevState,
       minPrice: e.target.value
     }))
   }
   const handleChangeCategory = (e) => {
-    onChange(prevState => ({
+    setFilters(prevState => ({
       ...prevState,
       category: e.target.value
     }))
@@ -19,16 +21,19 @@ export function Filters ({ onChange, maxPrice, categories }) {
     <div className='container pt-2'>
       <div className='row row-cols-sm-2 justify-content-between'>
         <div className='col-sm-5 col-md-4 mb-2 mb-sm-0 card'>
-          <label htmlFor='price' className='form-label fw-light'>Desde: $ {minPrice}</label>
+          <label htmlFor={minPriceFilterId} className='form-label fw-light d-flex justify-content-between'>
+            <span className='text-info'>Desde ${filters.minPrice}</span>
+            <span className='text-info'>Hasta ${maxPrice}</span>
+          </label>
           <input
-            type='range' className='form-range' id='price' min='0' max={maxPrice - 100} step='200'
-            onChange={handleChangeMinPrice}
+            type='range' className='form-range' id={minPriceFilterId} min='0' max={maxPrice - 20} step='20'
+            onChange={handleChangeMinPrice} value={filters.minPrice}
           />
         </div>
         <div className='col-sm-5 col-md-4 card'>
-          <label htmlFor='category' className='form-label fw-light'>Categoría</label>
+          <label htmlFor={categoryFilterId} className='form-label fw-light'>Categoría</label>
           <select
-            id='category' onChange={handleChangeCategory}
+            id={categoryFilterId} onChange={handleChangeCategory}
             className='form-select form-select-sm mb-1' aria-label='Small select example'
           >
             <option value='all'>Todas</option>
