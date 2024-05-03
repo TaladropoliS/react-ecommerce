@@ -1,13 +1,11 @@
 import { CartIcon, ClearCartIcon } from './Icons.jsx'
-import { useId } from 'react'
 import './Cart.css'
 
 export function Cart () {
-  // const cartCheckboxId = useId()
   return (
     <>
       <button
-        className='btn btn-primary' type='button' data-bs-toggle='offcanvas'
+        className='cart-button' type='button' data-bs-toggle='offcanvas'
         data-bs-target='#offcanvasRight' aria-controls='offcanvasRight'
       >
         <CartIcon />
