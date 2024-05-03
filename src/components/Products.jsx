@@ -30,12 +30,16 @@ export function Products ({ products }) {
                   </button>
                   {
                         isProductInCart
-                          ? <button onClick={() => removeFromCart(product)} className='btn btn-sm btn-danger'>
-                            <RemoveFromCartIcon />
+                          ? (
+                            <button onClick={() => removeFromCart(product)} className='btn btn-sm btn-danger'>
+                              <RemoveFromCartIcon />
                             </button>
-                          : <button className='btn btn-sm btn-outline-secondary' disabled>
-                            <RemoveFromCartIcon />
+                            )
+                          : (
+                            <button className='btn btn-sm btn-outline-secondary' disabled>
+                              <RemoveFromCartIcon />
                             </button>
+                            )
                     }
                 </div>
               </div>
