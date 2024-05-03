@@ -29,18 +29,21 @@ export function Products ({ products }) {
                     <AddToCartIcon />
                   </button>
                   {
-                        isProductInCart
-                          ? (
-                            <button onClick={() => removeFromCart(product)} className='btn btn-sm btn-danger'>
-                              <RemoveFromCartIcon />
-                            </button>
-                            )
-                          : (
-                            <button className='btn btn-sm btn-outline-secondary' disabled>
-                              <RemoveFromCartIcon />
-                            </button>
-                            )
-                    }
+                                        isProductInCart
+                                          ? (
+                                            <button
+                                              onClick={() => removeFromCart(product)}
+                                              className='btn btn-sm btn-danger'
+                                            >
+                                              <RemoveFromCartIcon />
+                                            </button>
+                                            )
+                                          : (
+                                            <button className='btn btn-sm btn-outline-secondary' disabled>
+                                              <RemoveFromCartIcon />
+                                            </button>
+                                            )
+                                    }
                 </div>
               </div>
             </div>
