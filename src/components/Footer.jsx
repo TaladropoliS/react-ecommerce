@@ -18,10 +18,12 @@ export function Footer () {
     return total
   }
   return (
-    <footer className='container-fluid py-0 pt-2 bg-black text-center fixed-bottom'>
-      <p className='fw-light p-0'>© 2021 e-commerce <ReactIcoSm /></p>
-      <span className='badge border border-primary rounded-pill'>{totalQuantity()}</span>
-      <span className='badge border border-primary rounded-pill'>{totalAmount()}</span>
+    <footer className='container-fluid pt-1 pb-3 bg-black text-center fixed-bottom'>
+      <p className='fw-light p-0 m-0'>© 2021 e-commerce <ReactIcoSm /></p>
+      <span className='badge border border-primary rounded-pill me-2'>{totalQuantity()}</span>
+      <span className='badge border border-primary rounded-pill'>
+        $ {totalAmount().toLocaleString('es-cl')}
+      </span>
     </footer>
   )
 }

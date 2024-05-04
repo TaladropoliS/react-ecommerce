@@ -58,8 +58,10 @@ export function Cart () {
             <CartIcon />
           </h5>
 
-          <span className='badge border border-primary rounded-pill'>{totalQuantity()}</span>
-          <span className='badge border border-primary rounded-pill'>{totalAmount()}</span>
+          <span className='badge border border-primary rounded-pill me-2'>{totalQuantity()}</span>
+          <span className='badge border border-primary rounded-pill'>
+            $ {totalAmount().toLocaleString('es-cl')}
+          </span>
           <button type='button' className='btn-close' data-bs-dismiss='offcanvas' aria-label='Close' />
         </div>
         <div className='offcanvas-body p-3 rounded'>
