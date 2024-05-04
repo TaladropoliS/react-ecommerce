@@ -27,6 +27,20 @@ function CartItem ({ thumbnail, price, title, quantity, addToCart, removeFromCar
 
 export function Cart () {
   const { cart, addToCart, removeFromCart, clearCart } = useCart()
+  const totalQuantity = () => {
+    let total = 0
+    cart.forEach(product => {
+      total += product.quantity
+    })
+    return total
+  }
+  const totalAmount = () => {
+    let total = 0
+    cart.forEach(product => {
+      total += product.price * product.quantity
+    })
+    return total
+  }
   return (
     <>
       <button
@@ -43,6 +57,9 @@ export function Cart () {
           <h5 className='offcanvas-title mx-auto text-primary' id='offcanvasRightLabel'>
             <CartIcon />
           </h5>
+
+          <span className='badge border border-primary rounded-pill'>{totalQuantity()}</span>
+          <span className='badge border border-primary rounded-pill'>{totalAmount()}</span>
           <button type='button' className='btn-close' data-bs-dismiss='offcanvas' aria-label='Close' />
         </div>
         <div className='offcanvas-body p-3 rounded'>

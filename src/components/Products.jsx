@@ -23,27 +23,26 @@ export function Products ({ products }) {
                   <h6 className=''>{product.title}</h6>
                   <h6 className='fw-normal'>{product.category}</h6>
                   <p>$ {product.price.toLocaleString('es-cl')}</p>
+                  <a href='' />
                 </div>
                 <div className='card-footer text-center'>
                   <button onClick={() => addToCart(product)} className='btn btn-sm btn-primary me-2'>
                     <AddToCartIcon />
                   </button>
-                  {
-                                        isProductInCart
-                                          ? (
-                                            <button
-                                              onClick={() => removeFromCart(product)}
-                                              className='btn btn-sm btn-danger'
-                                            >
-                                              <RemoveFromCartIcon />
-                                            </button>
-                                            )
-                                          : (
-                                            <button className='btn btn-sm btn-outline-secondary' disabled>
-                                              <RemoveFromCartIcon />
-                                            </button>
-                                            )
-                                    }
+                  {isProductInCart
+                    ? (
+                      <button
+                        onClick={() => removeFromCart(product)}
+                        className='btn btn-sm btn-danger'
+                      >
+                        <RemoveFromCartIcon />
+                      </button>
+                      )
+                    : (
+                      <button className='btn btn-sm btn-outline-secondary' disabled>
+                        <RemoveFromCartIcon />
+                      </button>
+                      )}
                 </div>
               </div>
             </div>
