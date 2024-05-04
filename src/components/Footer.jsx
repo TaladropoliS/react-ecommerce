@@ -20,7 +20,14 @@ export function Footer () {
   return (
     <footer className='container-fluid row row-cols-2 py-1 px-sm-5 bg-black fixed-bottom text-light'>
       <div className='col-12 col-sm-6 text-center text-sm-start'>
-        <p className='fw-light p-0 m-0'>e-commerce <ReactIcoSm /></p>
+        <p className='fw-light p-0 m-0'>e-commerce <ReactIcoSm />
+          <a
+            href='https://github.com/TaladropoliS/react-ecommerce' target='_blank' rel='noreferrer'
+            className='ps-1'
+          >
+            Repositorio en GitHub
+          </a>
+        </p>
       </div>
       <div className='col-12 col-sm-6 d-flex justify-content-end'>
         <div className=''>
