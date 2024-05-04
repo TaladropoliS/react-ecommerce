@@ -1,53 +1,60 @@
-import { createContext, useState } from 'react'
+import { createContext, useReducer, useState } from 'react'
 
 export const CartContext = createContext()
 
-export function CartProvider ({ children }) {
-  const [cart, setCart] = useState([])
+const initialState = []
+const reducer = (state, action) => {
+  const { type: actionType, payload: actionPayload } = action
+  if (!actionPayload) return initialState
+  const { id } = actionPayload
 
-  const addToCart = product => {
-    // verifica si hay productos en el carrito
-    const productInCartIndex = cart.findIndex(item => item.id === product.id)
-    if (productInCartIndex >= 0) {
-      const newCart = structuredClone(cart)
-      newCart[productInCartIndex].quantity += 1
-      return setCart(newCart)
-    }
-    // si el producto no está en el carrito
-    return setCart(prevState => ([
-      ...prevState,
-      {
-        ...product,
-        quantity: 1
+  switch (actionType) {
+    case 'ADD_TO_CART':
+      const productInCartIndex = state.findIndex(item => item.id === id)
+      if (productInCartIndex >= 0) {
+        const newState = structuredClone(state)
+        newState[productInCartIndex].quantity += 1
+        return newState
       }
-    ]))
+      return [
+        ...state,
+        {
+          ...actionPayload,
+          quantity: 1
+        }
+      ]
+    case 'REMOVE_FROM_CART':
+      const productIndex = state.findIndex(item => item.id === id)
+      if (state[productIndex].quantity > 1) {
+        const newState = structuredClone(state)
+        newState[productIndex].quantity -= 1
+        return newState
+      }
+      return state.filter(item => item.id !== id)
+    case 'CLEAR_CART':
+      return initialState
+  }
+  return state
+}
+
+export function CartProvider ({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const addToCart = (product) => {
+    dispatch({ type: 'ADD_TO_CART', payload: product })
   }
 
   const removeFromCart = (product) => {
-    // verifica si hay productos en el carrito
-    const productInCartIndex = cart.findIndex(item => item.id === product.id)
-    if (productInCartIndex >= 0) {
-      const newCart = structuredClone(cart)
-      newCart[productInCartIndex].quantity -= 1
-      if (newCart[productInCartIndex].quantity === 0) {
-        const newCart = cart.filter((item) => item.id !== product.id)
-        return setCart(newCart)
-      }
-      return setCart(newCart)
-    }
+    dispatch({ type: 'REMOVE_FROM_CART', payload: product })
   }
 
-  //   const newCart = cart.filter((item) => item.id !== product.id)
-  //   setCart(newCart)
-  // }
-
   const clearCart = () => {
-    setCart([])
+    dispatch({ type: 'CLEAR_CART' })
   }
 
   return (
     <CartContext.Provider value={{
-      cart,
+      cart: state,
       addToCart,
       removeFromCart,
       clearCart
