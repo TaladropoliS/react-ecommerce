@@ -1,4 +1,4 @@
-import { ReactIcoSm, CartIcon, EmptyCartIcon } from './Icons.jsx'
+import { CartIcon, ReactIcoSm } from './Icons.jsx'
 import { useCart } from '../hooks/useCart.js'
 
 export function Footer () {
@@ -39,8 +39,8 @@ export function Footer () {
         </div>
       </div>
     </footer>
-  // <footer className='container-fluid pt-1 pb-3 bg-black text-center fixed-bottom'>
-  //   <p className='fw-light p-0 m-0'>© 2021 e-commerce <ReactIcoSm /></p>
+    // <footer className='container-fluid pt-1 pb-3 bg-black text-center fixed-bottom'>
+    //   <p className='fw-light p-0 m-0'>© 2021 e-commerce <ReactIcoSm /></p>
     //   <span className='badge border border-primary rounded-pill me-2'>{totalQuantity()}</span>
     //   <span className='badge border border-primary rounded-pill'>
     //     $ {totalAmount().toLocaleString('es-cl')}
