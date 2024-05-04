@@ -11,7 +11,7 @@ function CartItem ({ thumbnail, price, title, quantity, addToCart, removeFromCar
         src={thumbnail} alt={title}
       />
       <div className='text-center'>
-        <strong><title /></strong>
+        <strong>{title}</strong>
         <br /> $ {price}
       </div>
       <footer className='text-center'>
@@ -50,21 +50,22 @@ export function Cart () {
         <CartIcon />
       </button>
       <div
-        className='offcanvas offcanvas-end' tabIndex='-1' id='offcanvasRight'
+        className='offcanvas offcanvas-end bg-dark text-secondary' tabIndex='-1' id='offcanvasRight'
         aria-labelledby='offcanvasRightLabel'
       >
-        <div className='offcanvas-header shadow'>
-          <h5 className='offcanvas-title mx-auto text-primary' id='offcanvasRightLabel'>
+        <div className='offcanvas-header'>
+          <h5 className='offcanvas-title ms-auto pe-2 text-primary' id='offcanvasRightLabel'>
             <CartIcon />
           </h5>
-
-          <span className='badge border border-primary rounded-pill me-2'>{totalQuantity()}</span>
-          <span className='badge border border-primary rounded-pill'>
-            $ {totalAmount().toLocaleString('es-cl')}
-          </span>
+          <div className='me-auto pt-1'>
+            <span className='rounded-pill me-2'>{totalQuantity()}</span>
+            <span className='badge border border-secondary rounded-pill'>
+              $ {totalAmount().toLocaleString('es-cl')}
+            </span>
+          </div>
           <button type='button' className='btn-close' data-bs-dismiss='offcanvas' aria-label='Close' />
         </div>
-        <div className='offcanvas-body p-3 rounded'>
+        <div className='offcanvas-body border-top border-bottom border-secondary shadow p-3 rounded'>
           {cart.map(product => (
             <CartItem
               key={product.id}
@@ -74,13 +75,16 @@ export function Cart () {
             />
           ))}
         </div>
-        <button
-          onClick={clearCart} className='py-2 text-center btn btn-outline-danger'
-          data-bs-toggle='offcanvas'
-          data-bs-target='#offcanvasRight' aria-controls='offcanvasRight'
-        >
-          <ClearCartIcon /> vaciar carro
-        </button>
+        <div className='px-5 py-2 bg-black text-end text-secondary'>
+          Vaciar
+          <button
+            onClick={clearCart} className='ms-2 py-2 btn btn-sm btn-outline-secondary'
+            data-bs-toggle='offcanvas'
+            data-bs-target='#offcanvasRight' aria-controls='offcanvasRight'
+          >
+            <ClearCartIcon />
+          </button>
+        </div>
       </div>
     </>
   )

@@ -22,8 +22,8 @@ export function Filters ({ maxPrice, categories }) {
       <div className='row row-cols-sm-2 justify-content-between'>
         <div className='col-sm-5 col-md-4 mb-2 mb-sm-0 card'>
           <label htmlFor={minPriceFilterId} className='form-label fw-light d-flex justify-content-between'>
-            <span className='text-info'>Desde ${filters.minPrice}</span>
-            <span className='text-info'>Hasta ${maxPrice}</span>
+            <span className='text-dark'>Desde ${filters.minPrice}</span>
+            <span className='text-dark'>Hasta ${maxPrice}</span>
           </label>
           <input
             type='range' className='form-range' id={minPriceFilterId} min='0' max={maxPrice - 20} step='20'
@@ -31,7 +31,7 @@ export function Filters ({ maxPrice, categories }) {
           />
         </div>
         <div className='col-sm-5 col-md-4 card'>
-          <label htmlFor={categoryFilterId} className='form-label fw-light'>Categoría</label>
+          <label htmlFor={categoryFilterId} className='form-label fw-light'>Categorías</label>
           <select
             id={categoryFilterId} onChange={handleChangeCategory}
             className='form-select form-select-sm mb-1' aria-label='Small select example'

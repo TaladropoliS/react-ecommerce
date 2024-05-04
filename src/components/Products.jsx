@@ -8,8 +8,8 @@ export function Products ({ products }) {
     return cart.some(item => item.id === product.id)
   }
   return (
-    <section className='container-fluid py-3 text-center'>
-      <div className='row g-3 gy-5 row-cols-2 row-cols-sm-3 row-cols-md-4 justify-content-center'>
+    <section className='container-fluid py-3 pb-5 text-center'>
+      <div className='row g-3 gy-5 row-cols-2 row-cols-sm-3 row-cols-md-4 pb-5 justify-content-center'>
         {products.map((product) => {
           const isProductInCart = checkProductInCart(product)
           return (
